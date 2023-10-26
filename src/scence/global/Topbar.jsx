@@ -1,45 +1,57 @@
-import { Box, IconButton, useTheme, InputBase } from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
+import InputBase from "@mui/material/InputBase"
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../themes";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import FaceIcon from "@mui/icons-material/Face";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import BuildIcon from "@mui/icons-material/Build";
 
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);FaceIcon
+  const colorMode = useContext(ColorModeContext);
+
+//const { innerWidth: width } = window;
+// console.log(width,height);
+
+
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" p={1}>
+      {/* SEARCH BAR */}
       <Box
         display="flex"
-        backgroudColor={colors.primary[400]}
+        backgroundColor={colors.primary[400]}
         borderRadius="3px"
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
-        <IconButton type="button" sx={{ p: 1 }}>
+        <InputBase sx={{ ml: 2, flex:1,}} placeholder="Search" />
+        <IconButton type="button" sx={{ p: 1 } }>
           <SearchIcon />
         </IconButton>
       </Box>
-      <Box display="flex"></Box>
-      <IconButton onClick={colorMode.toggleColorMode}>
-        <LightModeOutlinedIcon />
-      </IconButton>
-      <IconButton>
-        <FaceIcon />
-      </IconButton>
-      <IconButton>
-        {" "}
-        <CampaignIcon />
-      </IconButton>
-      <IconButton>
-        {" "}
-        <BuildIcon />
-      </IconButton>
+{/* <Box width={width/2}></Box> */}
+      {/* ICONS */}
+      <Box display="flex">
+        <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === "dark" ? (
+            <DarkModeOutlinedIcon />
+          ) : (
+            <LightModeOutlinedIcon />
+          )}
+        </IconButton>
+        <IconButton>
+          <NotificationsOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <SettingsOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <PersonOutlinedIcon />
+        </IconButton>
+      </Box>
     </Box>
   );
 };
