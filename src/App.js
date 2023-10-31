@@ -1,7 +1,9 @@
 import { ColorModeContext, useMode } from "./themes";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import Topbar from "./scence/global/Topbar";
-import Sidebar_ from "./scence/global/Sidebar";
+import { CssBaseline, ThemeProvider, Box } from "@mui/material";
+import Topbar from "./main/global/Topbar";
+import Sidebar_ from "./main/global/Sidebar";
+import { useState } from "react";
+
 // import Dashboard from "./scence/dashboard"
 // import Team from "./scence/team";
 // import Invoices from "./scence/invoices";
@@ -13,40 +15,35 @@ import Sidebar_ from "./scence/global/Sidebar";
 // import FAQ from "./scence/faq";
 // import Geography from "./scence/geography";
 // import Calendar from "./scence/calendar";
-import { Box } from "@mui/material";
 
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./main/screens/dashboard";
+import Team from "./main/screens/team";
+import Contacts from "./main/screens/contact";
 
 function App() {
+  
   const [theme, colorMode] = useMode();
-
+  const [isSidebar, setIsSidebar] = useState(true);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {/* <div className="app"> */}
         <main className="content">
-          <Box
-            flexDirection={"row"}
-            display="flex"
-          >
+          <Box flexDirection={"row"} display="flex">
             <Box display="flex">
-              <Sidebar_ />
+              <Sidebar_ isSidebar={isSidebar} />
             </Box>
-            <Box sx={{ ml: 1, flex:1}} >
-              <Topbar />
-              {/* <Routes>
-                {/* <Route path="/" element={<Dashboard/>}/> */}
-                {/* <Route path="/team" element={<Team/>}/> */}
-                {/* <Route path="/invoices" element={<Invoices/>}/> */}
-                {/* <Route path="/contacts" element={<Contacts/>}/> */}
-                {/* <Route path="/bar" element={<Bar/>}/> */}
-                {/* <Route path="/form" element={<Form/>}/> */}
-                {/* <Route path="/line" element={<Line/>}/> */}
-                {/* <Route path="/pie" element={<Pie/>}/> */}
-                {/* <Route path="/faq" element={<FAQ/>}/> */}
-                {/* <Route path="/geography" element={<Geography/>}/> */}
-                {/* <Route path="/calendar" element={<Calendar/>}/> */}
+            <Box sx={{ ml: 1, flex: 1 }}>
+              <Topbar setIsSidebar={setIsSidebar} />
+              {/* <BrowserRouter> */}
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/contact" element={<Contacts />} />
+              </Routes>
+              {/* </BrowserRouter> */}
             </Box>
           </Box>
         </main>
@@ -55,4 +52,4 @@ function App() {
   );
 }
 
-export default App;
+export default  App;
