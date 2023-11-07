@@ -15,13 +15,13 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-
+import { IsMobile } from "../../components/layout";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Link to={to}  style={{ textDecoration: 'none' }}>
+    <Link to={to} style={{ textDecoration: "none" }}>
       <MenuItem
         active={selected === title}
         style={{ color: colors.grey[100] }}
@@ -35,32 +35,15 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     </Link>
   );
 };
-const Sidebar_ = () => {
+const SidebarA = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-
+  console.log(String(IsMobile()));
+  //setIsCollapsed();
   return (
-    <Box
-    // sx={{
-    //   "& .pro-side-inner": {
-    //     background: `${colors.primary[400]} !important`,
-    //   },
-    //   "& .pro-icon-wrapper": {
-    //     background: "transparent !important",
-    //   },
-    //   "& .pro-inner-item": {
-    //     padding: "Spx 35px 5px 20px !important",
-    //   },
-    //   "& .pro-inner-item:hover": {
-    //     color: "#868dfb !important",
-    //   },
-    //   "& .pro-menu-item.active": {
-    //     color: "#6870fa !important",
-    //   },
-    // }}
-    >
+    <Box>
       <Sidebar backgroundColor={colors.primary[400]} collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -259,4 +242,4 @@ const Sidebar_ = () => {
   );
 };
 
-export default Sidebar_;
+export default SidebarA;

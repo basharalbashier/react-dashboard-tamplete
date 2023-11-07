@@ -1,9 +1,8 @@
 import { ColorModeContext, useMode } from "./themes";
 import { CssBaseline, ThemeProvider, Box } from "@mui/material";
 import Topbar from "./main/global/Topbar";
-import Sidebar_ from "./main/global/Sidebar";
+import SidebarA from "./main/global/Sidebar";
 import { useState } from "react";
-
 // import Dashboard from "./scence/dashboard"
 // import Team from "./scence/team";
 // import Invoices from "./scence/invoices";
@@ -22,7 +21,6 @@ import Team from "./main/screens/team";
 import Contacts from "./main/screens/contact";
 
 function App() {
-  
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   return (
@@ -33,7 +31,7 @@ function App() {
         <main className="content">
           <Box flexDirection={"row"} display="flex">
             <Box display="flex">
-              <Sidebar_ isSidebar={isSidebar} />
+              <SidebarA isSidebar={isSidebar} />
             </Box>
             <Box sx={{ ml: 1, flex: 1 }}>
               <Topbar setIsSidebar={setIsSidebar} />
@@ -52,4 +50,8 @@ function App() {
   );
 }
 
-export default  App;
+export default App;
+
+
+
+
